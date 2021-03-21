@@ -33,47 +33,6 @@ module nandgate(
     assign out = ~(input1 & input2);
 endmodule
 
-module m81(
-    input D0,
-    input D1,
-    input D2,
-    input D3,
-    input D4,
-    input D5,
-    input D6,
-    input D7,
-    input S0,
-    input S1,
-    input S2,
-    output out
-    );
-
-    wire araKablo1;// SO'
-    wire araKablo2;// S1'
-    wire araKablo3;// S2'
-    wire araKablo4;
-    wire araKablo5;
-    wire araKablo6;
-    wire araKablo7;
-    wire araKablo8;
-    wire araKablo9;
-    wire araKablo10;
-    wire araKablo11;
-
-    notgate NOT1(.input1(S0), .out(araKablo1)); // SO'
-    notgate NOT2(.input1(S1), .out(araKablo2)); // S1'
-    notgate NOT3(.input1(S2), .out(araKablo3)); // S2'
-    andgatefourinput AND1 (.input1(araKablo1), .input2(araKablo2), .input3(araKablo3), .input4(D0), .out(araKablo4)) ;
-    andgatefourinput AND2 (.input1(D1), .input2(S0), .input3(araKablo2), .input4(araKablo3), .out(araKablo5)) ;
-    andgatefourinput AND3 (.input1(D2), .input2(araKablo1), .input3(S1), .input4(araKablo3), .out(araKablo6)) ;
-    andgatefourinput AND4 (.input1(D3), .input2(S0), .input3(S1), .input4(araKablo3), .out(araKablo7)) ;
-    andgatefourinput AND5 (.input1(D4), .input2(S2), .input3(araKablo1), .input4(araKablo2), .out(araKablo8)) ;
-    andgatefourinput AND6 (.input1(D5), .input2(S0), .input3(araKablo2), .input4(S2), .out(araKablo9)) ;
-    andgatefourinput AND7 (.input1(D6), .input2(S1), .input3(S2), .input4(araKablo1), .out(araKablo10)) ;
-    andgatefourinput AND8 (.input1(D7), .input2(S0), .input3(S1), .input4(S2), .out(araKablo11)) ;
-
-    orgateeightinput OR1(araKablo4,araKablo5,araKablo6,araKablo7,araKablo8,araKablo9,araKablo10,araKablo11, out);
-endmodule
 
 module andgate(
     input  input1,
@@ -91,6 +50,15 @@ module andgatefourinput(
     output  out
     );
     assign out = input1 & input2 & input3 & input4;
+endmodule
+
+module andgatethreeinput(
+    input  input1,
+    input  input2,
+    input  input3,
+    output  out
+    );
+    assign out = input1 & input2 & input3;
 endmodule
 
 module notgate(
@@ -201,4 +169,76 @@ module part1_f(
     notgate NOT1(.input1(input3),.out(araKablo1));//not c
     m81 MUX1(.D0(1),.D1(1),.D2(0),.D3(araKablo1),.D4(1),.D5(0),.D6(1),.D7(araKablo1),.S0(input1),.S1(input2),.S2(input4),.out(out));
 endmodule 
+
+module m81(
+    input D0,
+    input D1,
+    input D2,
+    input D3,
+    input D4,
+    input D5,
+    input D6,
+    input D7,
+    input S0,
+    input S1,
+    input S2,
+    output out
+    );
+
+    wire araKablo1;// SO'
+    wire araKablo2;// S1'
+    wire araKablo3;// S2'
+    wire araKablo4;
+    wire araKablo5;
+    wire araKablo6;
+    wire araKablo7;
+    wire araKablo8;
+    wire araKablo9;
+    wire araKablo10;
+    wire araKablo11;
+
+    notgate NOT1(.input1(S0), .out(araKablo1)); // SO'
+    notgate NOT2(.input1(S1), .out(araKablo2)); // S1'
+    notgate NOT3(.input1(S2), .out(araKablo3)); // S2'
+    andgatefourinput AND1 (.input1(araKablo1), .input2(araKablo2), .input3(araKablo3), .input4(D0), .out(araKablo4)) ;
+    andgatefourinput AND2 (.input1(D1), .input2(S0), .input3(araKablo2), .input4(araKablo3), .out(araKablo5)) ;
+    andgatefourinput AND3 (.input1(D2), .input2(araKablo1), .input3(S1), .input4(araKablo3), .out(araKablo6)) ;
+    andgatefourinput AND4 (.input1(D3), .input2(S0), .input3(S1), .input4(araKablo3), .out(araKablo7)) ;
+    andgatefourinput AND5 (.input1(D4), .input2(S2), .input3(araKablo1), .input4(araKablo2), .out(araKablo8)) ;
+    andgatefourinput AND6 (.input1(D5), .input2(S0), .input3(araKablo2), .input4(S2), .out(araKablo9)) ;
+    andgatefourinput AND7 (.input1(D6), .input2(S1), .input3(S2), .input4(araKablo1), .out(araKablo10)) ;
+    andgatefourinput AND8 (.input1(D7), .input2(S0), .input3(S1), .input4(S2), .out(araKablo11)) ;
+
+    orgateeightinput OR1(araKablo4,araKablo5,araKablo6,araKablo7,araKablo8,araKablo9,araKablo10,araKablo11, out);
+endmodule
+
+module d38(a,b,c,d0,d1,d2,d3,d4,d5,d6,d7);
+    input a,b,c;
+    output d0,d1,d2,d3,d4,d5,d6,d7;
+
+    wire nota;// a'
+    wire notb;// b'
+    wire notc;// c'
+    wire araKablo4;
+    wire araKablo5;
+    wire araKablo6;
+    wire araKablo7;
+    wire araKablo8;
+    wire araKablo9;
+    wire araKablo10;
+    wire araKablo11;
+
+    notgate NOT1(.input1(a), .out(araKablo1)); // a'
+    notgate NOT2(.input1(b), .out(araKablo2)); // b'
+    notgate NOT3(.input1(c), .out(araKablo3)); // c'
     
+    andgatethreeinput AND1(.input1(nota), .input2(notb), .input3(notc), .out(d0));
+    andgatethreeinput AND1(.input1(nota), .input2(notb), .input3(c), .out(d1));
+    andgatethreeinput AND1(.input1(nota), .input2(b), .input3(notc), .out(d2));
+    andgatethreeinput AND1(.input1(nota), .input2(b), .input3(c), .out(d3));
+    andgatethreeinput AND1(.input1(a), .input2(notb), .input3(notc), .out(d4));
+    andgatethreeinput AND1(.input1(a), .input2(notb), .input3(c), .out(d5));
+    andgatethreeinput AND1(.input1(a), .input2(b), .input3(notc), .out(d6));
+    andgatethreeinput AND1(.input1(a), .input2(b), .input3(c), .out(d7));
+
+endmodule
