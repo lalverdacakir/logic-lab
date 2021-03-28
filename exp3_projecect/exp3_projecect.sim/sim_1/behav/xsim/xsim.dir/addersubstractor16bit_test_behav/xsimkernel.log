@@ -2,3 +2,6 @@ Running: xsim.dir/addersubstractor16bit_test_behav/xsimk.exe -simmode gui -wdb a
 Design successfully loaded
 Design Loading Memory Usage: 5392 KB (Peak: 5392 KB)
 Design Loading CPU Usage: 30 ms
+Simulation completed
+Simulation Memory Usage: 6072 KB (Peak: 6072 KB)
+Simulation CPU Usage: 61 ms

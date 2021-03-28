@@ -1,3 +1,78 @@
+module andgate_test();
+    reg input1;
+    reg input2;
+    wire out;
+
+    andgate OR1(.input1(input1),.input2(input2),.out(out));
+
+    initial begin
+        input1 =0; input2 =0; #250;
+        input1 =0; input2 =1; #250;
+        input1 =1; input2 =0; #250;
+        input1 =1; input2 =1; #250;
+    end
+endmodule
+module andgatethreeinput_test();
+    reg input1;
+    reg input2;
+    reg input3;
+    wire out;
+
+    andgatethreeinput AND31(.input1(input1),.input2(input2),.input3(input3),.out(out));
+
+    initial begin
+        input1 =0; input2 =0; input3=0; #125;
+        input1 =0; input2 =1; input3=0;#125;
+        input1 =1; input2 =0; input3=0;#125;
+        input1 =1; input2 =1;  input3=0;#125;
+        input1 =0; input2 =0; input3=1; #125
+        input1 =0; input2 =1; input3=1;#125;
+        input1 =1; input2 =0; input3=1;#125;
+        input1 =1; input2 =1;  input3=1;#125;
+       
+    end
+endmodule
+module orgate_test();
+    reg input1;
+    reg input2;
+    wire out;
+
+    orgate OR1(.input1(input1),.input2(input2),.out(out));
+
+    initial begin
+        input1 =0; input2 =0; #250;
+        input1 =0; input2 =1; #250;
+        input1 =1; input2 =0; #250;
+        input1 =1; input2 =1; #250;
+       
+    end
+endmodule
+module xor_test();
+    reg input1;
+    reg input2;
+    wire out;
+
+    xorgate XOR1(.input1(input1),.input2(input2),.out(out));
+
+    initial begin
+        input1 =0; input2 =0; #250;
+        input1 =0; input2 =1; #250;
+        input1 =1; input2 =0; #250;
+        input1 =1; input2 =1; #250;
+    end
+endmodule
+
+module notgate_test();
+    reg input1;
+    wire out;
+
+    notgate not1(.input1(input1),.out(out));
+
+    initial begin
+        input1 =0; #500;
+        input1 =1; #500; 
+    end
+endmodule
 module halfadder_test();
     reg input1;
     reg input2;
