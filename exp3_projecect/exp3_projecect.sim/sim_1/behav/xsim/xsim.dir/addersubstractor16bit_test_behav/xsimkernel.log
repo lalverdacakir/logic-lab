@@ -1,4 +1,4 @@
-Running: xsim.dir/addersubstractor16bit_test_behav/xsimk.exe -simmode gui -wdb addersubstractor16bit_test_behav.wdb -simrunnum 0 -socket 51447
+Running: xsim.dir/addersubstractor16bit_test_behav/xsimk.exe -simmode gui -wdb addersubstractor16bit_test_behav.wdb -simrunnum 0 -socket 53363
 Design successfully loaded
-Design Loading Memory Usage: 5884 KB (Peak: 5884 KB)
-Design Loading CPU Usage: 15 ms
+Design Loading Memory Usage: 5392 KB (Peak: 5392 KB)
+Design Loading CPU Usage: 30 ms

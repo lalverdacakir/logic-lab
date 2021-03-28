@@ -71,7 +71,7 @@ module fulladder(
 
     halfadder ha1( .input1(input1), .input2(input2), .sum(araKablo1), .carry(araKablo2));
     halfadder ha2( .input1(araKablo1), .input2(inputc), .sum(sum), .carry(araKablo3));
-    xorgate xor1(.input1(araKablo2), .input2(araKablo3), .out(outc));
+    orgate or1(.input1(araKablo2), .input2(araKablo3), .out(outc));
 endmodule
 
 

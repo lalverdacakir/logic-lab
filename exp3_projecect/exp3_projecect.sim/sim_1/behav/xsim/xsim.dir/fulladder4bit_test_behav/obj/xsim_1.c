@@ -54,6 +54,7 @@ extern void execute_61(char*, char *);
 extern void execute_62(char*, char *);
 extern void execute_40(char*, char *);
 extern void execute_41(char*, char *);
+extern void execute_44(char*, char *);
 extern void execute_37(char*, char *);
 extern void execute_38(char*, char *);
 extern void execute_39(char*, char *);
@@ -63,12 +64,12 @@ extern void execute_65(char*, char *);
 extern void execute_66(char*, char *);
 extern void execute_67(char*, char *);
 extern void vlog_transfunc_eventcallback(char*, char*, unsigned, unsigned, unsigned, char *);
-funcp funcTab[15] = {(funcp)execute_35, (funcp)execute_60, (funcp)execute_61, (funcp)execute_62, (funcp)execute_40, (funcp)execute_41, (funcp)execute_37, (funcp)execute_38, (funcp)execute_39, (funcp)execute_63, (funcp)execute_64, (funcp)execute_65, (funcp)execute_66, (funcp)execute_67, (funcp)vlog_transfunc_eventcallback};
-const int NumRelocateId= 15;
+funcp funcTab[16] = {(funcp)execute_35, (funcp)execute_60, (funcp)execute_61, (funcp)execute_62, (funcp)execute_40, (funcp)execute_41, (funcp)execute_44, (funcp)execute_37, (funcp)execute_38, (funcp)execute_39, (funcp)execute_63, (funcp)execute_64, (funcp)execute_65, (funcp)execute_66, (funcp)execute_67, (funcp)vlog_transfunc_eventcallback};
+const int NumRelocateId= 16;
 
 void relocate(char *dp)
 {
-	iki_relocate(dp, "xsim.dir/fulladder4bit_test_behav/xsim.reloc",  (void **)funcTab, 15);
+	iki_relocate(dp, "xsim.dir/fulladder4bit_test_behav/xsim.reloc",  (void **)funcTab, 16);
 
 	/*Populate the transaction function pointer field in the whole net structure */
 }

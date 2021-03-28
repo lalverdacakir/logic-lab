@@ -12,12 +12,12 @@ Compiling module xil_defaultlib.xorgate
 Compiling module xil_defaultlib.xorla
 Compiling module xil_defaultlib.andgate
 Compiling module xil_defaultlib.halfadder
+Compiling module xil_defaultlib.orgate
 Compiling module xil_defaultlib.fulladder
 Compiling module xil_defaultlib.fulladder4bit
 Compiling module xil_defaultlib.fulladder16bit
 Compiling module xil_defaultlib.notgate
 Compiling module xil_defaultlib.andgatethreeinput
-Compiling module xil_defaultlib.orgate
 Compiling module xil_defaultlib.addersubstractor16bit
 Compiling module xil_defaultlib.addersubstractor16bit_test
 Compiling module xil_defaultlib.glbl
