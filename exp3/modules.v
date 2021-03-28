@@ -45,7 +45,7 @@ module xorgate(
     input  input2, //second input
     output  out //output
     );
-    assign out = (~input1 | ~input2) & (input1 | input2);
+    assign out = (~input1 | input2) & (input1 | ~input2);
 endmodule
 
 module halfadder(
@@ -87,7 +87,7 @@ module fulladder4bit(
     fulladder fa1( .input1(input1[0]),  .input2(input2[0]), .inputc(inputc), .outc(araKablo[0]), .sum(sum[0])  );
     fulladder fa2( .input1(input1[1]),  .input2(input2[1]), .inputc(araKablo[0]), .outc(araKablo[1]), .sum(sum[1])  );
     fulladder fa3( .input1(input1[2]),  .input2(input2[2]), .inputc(araKablo[1]), .outc(araKablo[2]), .sum(sum[2])  );
-    fulladder fa4( .input1(input1[3]),  .input2(input2[3]), .inputc(araKablo[2]), .outc(araKablo[outc]), .sum(sum[3])  );
+    fulladder fa4( .input1(input1[3]),  .input2(input2[3]), .inputc(araKablo[2]), .outc(outc), .sum(sum[3])  );
 
 endmodule
 
@@ -102,10 +102,10 @@ module fulladder16bit(
 );
     wire [2:0] araKablo;
 
-    fulladderfourbit fafour1( .input1(input1[3:0]),  .input2(input2[3:0]), .inputc(inputc), .outc(araKablo[0]), .sum(sum[3:0])  );
-    fulladderfourbit fafour2( .input1(input1[7:4]),  .input2(input2[7:4]), .inputc(araKablo[0]), .outc(araKablo[1]), .sum(sum[7:4])  );
-    fulladderfourbit fafour3( .input1(input1[11:8]),  .input2(input2[11:8]), .inputc(araKablo[1]), .outc(araKablo[2]), .sum(sum[11:8])  );
-    fulladderfourbit fafour4( .input1(input1[15:12]),  .input2(input2[15:12]), .inputc(araKablo[2]), .outc(araKablo[outc]), .sum(sum[15:12])  );
+    fulladder4bit fafour1( .input1(input1[3:0]),  .input2(input2[3:0]), .inputc(inputc), .outc(araKablo[0]), .sum(sum[3:0])  );
+    fulladder4bit fafour2( .input1(input1[7:4]),  .input2(input2[7:4]), .inputc(araKablo[0]), .outc(araKablo[1]), .sum(sum[7:4])  );
+    fulladder4bit fafour3( .input1(input1[11:8]),  .input2(input2[11:8]), .inputc(araKablo[1]), .outc(araKablo[2]), .sum(sum[11:8])  );
+    fulladder4bit fafour4( .input1(input1[15:12]),  .input2(input2[15:12]), .inputc(araKablo[2]), .outc(outc), .sum(sum[15:12])  );
 
 endmodule
 
@@ -143,7 +143,8 @@ module addersubstractor16bit(
     output [15:0] sum,
     output borrow,
     output overflow,
-    output outc
+    output outc,
+    output isValid
 );
     wire [15:0] araKablo1;
     xorla XOR1(.input1(input2),.I(I),.out(araKablo1));
@@ -189,7 +190,7 @@ module addersubstractor16bit(
     orgate OR3(.input1(araKablo13), .input2(araKablo14), .out(overflow));
 
     andgatethreeinput AND7(.input1(I),.input2(araKablo5),.input3(outc),.out(borrow));
+    
+    orgate VALID(.input1(overflow),.input2(borrow),.out(isValid));
 endmodule
-
-
 
