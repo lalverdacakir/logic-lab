@@ -143,7 +143,7 @@ module addersubstractor16bit(
 
 endmodule
 
-module borrowtest(
+module overflowtest(
     input input1,
     input input2,
     input sum1,
