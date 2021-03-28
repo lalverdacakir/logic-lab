@@ -45,7 +45,7 @@ module xorgate(
     input  input2, //second input
     output  out //output
     );
-    assign out = (~input1 | input2) & (input1 | ~input2);
+    assign out = (~input1 & input2) | (input1 & ~input2);
 endmodule
 
 module halfadder(
@@ -148,7 +148,7 @@ module addersubstractor16bit(
 );
     wire [15:0] araKablo1;
     xorla XOR1(.input1(input2),.I(I),.out(araKablo1));
-    fulladder16bit(.input1(input1),.input2(araKablo1),.inputc(I),.outc(outc),.sum(sum));
+    fulladder16bit FA16(.input1(input1),.input2(araKablo1),.inputc(I),.outc(outc),.sum(sum));
 //flag logics
    wire araKablo2; //not A_0
    wire araKablo3; //not B_0

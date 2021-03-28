@@ -1,0 +1,18 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp3/modules.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module andgate
+INFO: [VRFC 10-311] analyzing module andgatethreeinput
+INFO: [VRFC 10-311] analyzing module notgate
+INFO: [VRFC 10-311] analyzing module orgate
+INFO: [VRFC 10-311] analyzing module xorgate
+INFO: [VRFC 10-311] analyzing module halfadder
+INFO: [VRFC 10-311] analyzing module fulladder
+INFO: [VRFC 10-311] analyzing module fulladder4bit
+INFO: [VRFC 10-311] analyzing module fulladder16bit
+INFO: [VRFC 10-311] analyzing module xorla
+INFO: [VRFC 10-311] analyzing module addersubstractor16bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp3/tests.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module halfadder_test
+INFO: [VRFC 10-311] analyzing module fulladder_test
+INFO: [VRFC 10-311] analyzing module fulladder4bit_test
+INFO: [VRFC 10-311] analyzing module fulladder16bit_test
+INFO: [VRFC 10-311] analyzing module addersubstractor16bit_test

@@ -1,0 +1,24 @@
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 55fd3214e4914a43a8858f807fa6ac31 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot addersubstractor16bit_test_behav xil_defaultlib.addersubstractor16bit_test xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.xorgate
+Compiling module xil_defaultlib.xorla
+Compiling module xil_defaultlib.andgate
+Compiling module xil_defaultlib.halfadder
+Compiling module xil_defaultlib.fulladder
+Compiling module xil_defaultlib.fulladder4bit
+Compiling module xil_defaultlib.fulladder16bit
+Compiling module xil_defaultlib.notgate
+Compiling module xil_defaultlib.andgatethreeinput
+Compiling module xil_defaultlib.orgate
+Compiling module xil_defaultlib.addersubstractor16bit
+Compiling module xil_defaultlib.addersubstractor16bit_test
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot addersubstractor16bit_test_behav
