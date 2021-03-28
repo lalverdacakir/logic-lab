@@ -97,6 +97,16 @@ module fulladder16bit(
 endmodule
 
 
+module xorla(
+    input [15:0] input1,
+    input I,
+    output [15:0] out
+    );
+
+    xor XOR0(.input1(.input1[0]),.input2(I),out[0]);
+
+)
+
 
 
 
