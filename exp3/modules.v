@@ -62,7 +62,7 @@ module fulladder(
 endmodule
 
 
-module fulladderfourbit(
+module fulladder4bit(
     input [3:0] input1,
     input [3:0] input2,
     input inputc,
@@ -80,7 +80,7 @@ endmodule
 
 
 
-module fulladdersixteenbit(
+module fulladder16bit(
     input [15:0] input1,
     input [15:0] input2,
     input inputc,
