@@ -9,6 +9,19 @@ module andgate(
     // get the and of the inputs and assign the reuslt to out
 endmodule
 
+module andgatethreeinput(
+//inputs
+    input  input1,
+    input  input2,
+    input  input3,
+    //output
+    output  out
+    );
+    assign out = input1 & input2 & input3;
+    //get and of the 3 inputs and assign it to output
+endmodule
+
+
 module notgate(
     input input1,
     output out);
@@ -39,7 +52,7 @@ module halfadder(
     input input1,
     input input2,
     output sum,
-    output carry,
+    output carry
 );
     xorgate xor1(.input1(input1), .input2(input2), .out(sum));
     andgate and1(.input1(input1), .input2(input2), .out(carry));
@@ -50,7 +63,7 @@ module fulladder(
     input input2,
     input inputc,
     output outc,
-    output sum,
+    output sum
 );
     wire araKablo1;//first sum
     wire araKablo2; //first carry
@@ -67,7 +80,7 @@ module fulladder4bit(
     input [3:0] input2,
     input inputc,
     output outc,
-    output [3:0] sum,
+    output [3:0] sum
 );
     wire [2:0] araKablo;
 
@@ -85,7 +98,7 @@ module fulladder16bit(
     input [15:0] input2,
     input inputc,
     output outc,
-    output [15:0] sum,
+    output [15:0] sum
 );
     wire [2:0] araKablo;
 
@@ -103,24 +116,20 @@ module xorla(
     output [15:0] out
     );
 
-    xor XOR0(.input1(.input1[0]),.input2(I),out[0]);
-    xor XOR1(.input1(.input1[1]),.input2(I),out[1]);
-    xor XOR2(.input1(.input1[2]),.input2(I),out[2]);
-    xor XOR3(.input1(.input1[3]),.input2(I),out[3]);
-    xor XOR4(.input1(.input1[4]),.input2(I),out[4]);
-    xor XOR5(.input1(.input1[5]),.input2(I),out[5]);
-    xor XOR6(.input1(.input1[6]),.input2(I),out[6]);
-    xor XOR7(.input1(.input1[7]),.input2(I),out[7]);
-    xor XOR8(.input1(.input1[8]),.input2(I),out[8]);
-    xor XOR9(.input1(.input1[9]),.input2(I),out[9]);
-    xor XOR10(.input1(.input1[10]),.input2(I),out[10]);
-    xor XOR11(.input1(.input1[11]),.input2(I),out[11]);
-    xor XOR12(.input1(.input1[12]),.input2(I),out[12]);
-    xor XOR13(.input1(.input1[13]),.input2(I),out[13]);
-    xor XOR14(.input1(.input1[14]),.input2(I),out[14]);
-    xor XOR15(.input1(.input1[15]),.input2(I),out[15]);
-
-)
+    xorgate XOR0(.input1(input1[0]),.input2(I),.out(out[0]));
+    xorgate XOR1(.input1(input1[1]),.input2(I),.out(out[1]));
+    xorgate XOR2(.input1(input1[2]),.input2(I),.out(out[2]));
+    xorgate XOR3(.input1(input1[3]),.input2(I),.out(out[3]));
+    xorgate XOR4(.input1(input1[4]),.input2(I),.out(out[4]));
+    xorgate XOR5(.input1(input1[5]),.input2(I),.out(out[5]));
+    xorgate XOR6(.input1(input1[6]),.input2(I),.out(out[6]));
+    xorgate XOR7(.input1(input1[7]),.input2(I),.out(out[7]));
+    xorgate XOR8(.input1(input1[8]),.input2(I),.out(out[8]));
+    xorgate XOR9(.input1(input1[9]),.input2(I),.out(out[9]));
+    xorgate XOR10(.input1(input1[10]),.input2(I),.out(out[10]));
+    xorgate XOR11(.input1(input1[11]),.input2(I),.out(out[11]));
+    xorgate XOR12(.input1(input1[12]),.input2(I),.out(out[12]));
+    xorgate XOR13(.input1(input1[13]),.input2(I),.out(out[13]));
 endmodule 
 module addersubstractor16bit(
     input S,
@@ -141,105 +150,13 @@ module addersubstractor16bit(
     
 
 
-endmodule
-
-module overflowtest(
-    input input1,
-    input input2,
-    input sum1,
-    input S,
-    input I,
-    out out,
-);
-    //not of inputs
-    wire araKablo1;
-    wire araKablo2;
-    wire araKablo3;
-    wire araKablo10;
-    wire araKablo11;
-
-    //and gates
-    wire araKablo4;
-    wire araKablo5;
-    wire araKablo6;
-    wire araKablo7;
-
-    wire araKablo8;
-    wire araKablo9;
-
-    wire araKablo12;
-    wire araKablo13;
-
-
-
-    notgate NOT1(.input1(input1), .out(araKablo1)); // a'
-    notgate NOT2(.input1(input2), .out(araKablo2)); // b'
-    notgate NOT3(.input1(sum1), .out(araKablo3)); // sum1'
-    notgate NOT4(.input1(S), .out(araKablo10)); // S'
-    notgate NOT6(.input1(I), .out(araKablo11)); // I'
-
-
-
-    andgatethreeinput AND1(.input1(araKablo1), .input2(araKablo2), .input3(sum1), .out(araKablo4));
-    andgatethreeinput AND2(.input1(input1), .input2(input2), .input3(araKablo3), .out(araKablo5));
-    andgatethreeinput AND3(.input1(araKablo1), .input2(input2), .input3(sum1), .out(araKablo6));
-    andgatethreeinput AND4(.input1(araKablo2), .input2(input1), .input3(araKablo3), .out(araKablo7));
-
-    orgate OR1(.input1(araKablo4), .input2(araKablo5), .out(araKablo8));
-    orgate OR2(.input1(araKablo6), .input2(araKablo7), .out(araKablo9));
-
-    andgatethreeinput AND5(.input1(araKablo11), .input2(araKablo8), .input3(S), .out(araKablo12));
-    andgatethreeinput AND6(.input1(S), .input2(araKablo9), .input3(araKablo11), .out(araKablo13));
+    andgatethreeinput AND5(.input1(S), .input2(araKablo6), .input3(araKablo11), .out(araKablo13));
+    andgatethreeinput AND6(.input1(S), .input2(I), .input3(araKablo12), .out(araKablo14));
     
-    orgate OR3(.input1(araKablo12), .input2(araKablo13), .out(out));
+    orgate OR3(.input1(araKablo13), .input2(araKablo14), .out(overflow));
 
+    andgatethreeinput AND7(.input1(I),.input2(araKablo5),.input3(outc),.out(borrow));
 endmodule
 
-
-
-
-
-module andgatethreeinput(
-//inputs
-    input  input1,
-    input  input2,
-    input  input3,
-   //output
-    output  out
-    );
-    assign out = input1 & input2 & input3;
-    //get and of the 3 inputs
-endmodule
-
-module andgatethreeinput(
-//inputs
-    input  input1,
-    input  input2,
-    input  input3,
-    //output
-    output  out
-    );
-    assign out = input1 & input2 & input3;
-    //get and of the 3 inputs and assign it to output
-endmodule
-
-
-
-module orgateeightinput(
-//inputs
-    input  input1,
-    input input2,
-    input input3,
-    input input4,
-    input input5,
-    input input6,
-    input input7,
-    input input8,
-//output
-    output  out
-    );
-    //get or of all the inputs assign it to output
-    assign out = input1 | input2 | input3 |input4 |input5 |input6 |input7 |input8;
-endmodule
 
 
