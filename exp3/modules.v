@@ -104,8 +104,44 @@ module xorla(
     );
 
     xor XOR0(.input1(.input1[0]),.input2(I),out[0]);
+    xor XOR1(.input1(.input1[1]),.input2(I),out[1]);
+    xor XOR2(.input1(.input1[2]),.input2(I),out[2]);
+    xor XOR3(.input1(.input1[3]),.input2(I),out[3]);
+    xor XOR4(.input1(.input1[4]),.input2(I),out[4]);
+    xor XOR5(.input1(.input1[5]),.input2(I),out[5]);
+    xor XOR6(.input1(.input1[6]),.input2(I),out[6]);
+    xor XOR7(.input1(.input1[7]),.input2(I),out[7]);
+    xor XOR8(.input1(.input1[8]),.input2(I),out[8]);
+    xor XOR9(.input1(.input1[9]),.input2(I),out[9]);
+    xor XOR10(.input1(.input1[10]),.input2(I),out[10]);
+    xor XOR11(.input1(.input1[11]),.input2(I),out[11]);
+    xor XOR12(.input1(.input1[12]),.input2(I),out[12]);
+    xor XOR13(.input1(.input1[13]),.input2(I),out[13]);
+    xor XOR14(.input1(.input1[14]),.input2(I),out[14]);
+    xor XOR15(.input1(.input1[15]),.input2(I),out[15]);
 
 )
+endmodule 
+module addersubstractor16bit(
+    input S,
+    input I,
+    input [15:0] input1,
+    input [15:0] input2,
+    output [15:0] sum,
+    output borrow,
+    output overflow,
+    output outc
+);
+    wire [15:0] araKablo1;
+    xorla XOR1(.input1(input2),.I(I),.out(araKablo1));
+    fulladder16bit(.input1(input1),.input2(araKablo1),.inputc(I),.outc(outc),.sum(sum));
+
+    //borrow logic
+
+    
+
+
+endmodule
 
 
 
