@@ -130,6 +130,10 @@ module xorla(
     xorgate XOR11(.input1(input1[11]),.input2(I),.out(out[11]));
     xorgate XOR12(.input1(input1[12]),.input2(I),.out(out[12]));
     xorgate XOR13(.input1(input1[13]),.input2(I),.out(out[13]));
+    xorgate XOR14(.input1(input1[14]),.input2(I),.out(out[14]));
+    xorgate XOR15(.input1(input1[15]),.input2(I),.out(out[15]));
+
+
 endmodule 
 module addersubstractor16bit(
     input S,
@@ -143,12 +147,41 @@ module addersubstractor16bit(
 );
     wire [15:0] araKablo1;
     xorla XOR1(.input1(input2),.I(I),.out(araKablo1));
-    fulladder16bit fa1(.input1(input1),.input2(araKablo1),.inputc(I),.outc(outc),.sum(sum));
-
-    //borrow logic
-
+    fulladder16bit(.input1(input1),.input2(araKablo1),.inputc(I),.outc(outc),.sum(sum));
+//flag logics
+   wire araKablo2; //not A_0
+   wire araKablo3; //not B_0
+   wire araKablo4; // not sum_0
+   wire araKablo5; //not S
+   wire araKablo6; // not I
+   
+   wire araKablo7; 
+   wire araKablo8;//
+   wire araKablo9;
+   wire araKablo10;
+   
+   wire araKablo11;
+   wire araKablo12;
+   
+   wire araKablo13;
+   wire araKablo14;
+   
+   
+   
+    notgate NOT1(.input1(input1[0]), .out(araKablo2)); // A_0'
+    notgate NOT2(.input1(input2[0]), .out(araKablo3)); // B_0'
+    notgate NOT3(.input1(sum[0]), .out(araKablo4)); // SUM_0'
+    notgate NOT4(.input1(S), .out(araKablo5)); // S'
+    notgate NOT6(.input1(I), .out(araKablo6)); // I'
     
-
+    andgatethreeinput AND1(.input1(araKablo2), .input2(araKablo3), .input3(sum[0]), .out(araKablo7)); // A_0' and B_0' and SUM_0
+    andgatethreeinput AND2(.input1(input1[0]), .input2(input2[0]), .input3(araKablo4), .out(araKablo8)); //A_0 and B_0 and SUM_0'
+    andgatethreeinput AND3(.input1(araKablo2), .input2(input2[0]), .input3(sum[0]), .out(araKablo9)); //A_0' and B_0 and SUM_0
+    andgatethreeinput AND4(.input1(input1[0]), .input2(araKablo3), .input3(araKablo4), .out(araKablo10)); //A_0 and B_0' and SUM_0'
+    
+    
+    orgate OR1(.input1(araKablo7), .input2(araKablo8), .out(araKablo11)); 
+    orgate OR2(.input1(araKablo9), .input2(araKablo10), .out(araKablo12));
 
     andgatethreeinput AND5(.input1(S), .input2(araKablo6), .input3(araKablo11), .out(araKablo13));
     andgatethreeinput AND6(.input1(S), .input2(I), .input3(araKablo12), .out(araKablo14));
