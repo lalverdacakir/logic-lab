@@ -194,3 +194,23 @@ module addersubstractor16bit(
     orgate VALID(.input1(overflow),.input2(borrow),.out(isValid));
 endmodule
 
+module part7(
+    input [15:0] input1,
+    input [15:0] input2,
+    output [15:0] out
+   
+    );
+    wire [15:0] twoA,threeA,twoB;
+    addersubstractor16bit TWOA(.input1(input1),.input2(input1),.S(0),.I(0),.sum(twoA));//2a
+    addersubstractor16bit THREEA(.input1(twoA),.input2(input1),.S(0),.I(0),.sum(threeA));//3a
+    
+    addersubstractor16bit TWOB(.input1(input2),.input2(input2),.S(0),.I(0),.sum(twoB));//2b
+    
+    addersubstractor16bit result(.input1(threeA),.input2(twoB),.S(0),.I(1),.sum(out));//2a
+    
+
+    
+    endmodule
+    
+    
+    

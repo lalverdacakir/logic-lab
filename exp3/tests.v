@@ -176,3 +176,43 @@ module addersubstractor16bit_test();
         input1 =16'd8; input2 =16'd52; S=0; I = 1; #125;
     end
 endmodule
+
+module part7_test();
+
+    reg [15:0] input1;
+    reg [15:0] input2;
+    wire [15:0] out;
+    
+    
+    part7 P7(.input1(input1),.input2(input2),.out(out));
+    initial begin
+        input1 =16'd3105; input2 =16'd11275;#125;
+        input1 =16'd21; input2 =16'd83;#125;
+        input1 =16'd24; input2 =16'd32; #125;
+        input1 =16'd16386; input2 =16'd353;#125;
+        input1 =16'd202; input2 =16'd97; #125;
+        input1 =16'd44; input2 =16'd9; #125;
+        input1 =16'd64; input2 =16'd65535; #125;
+        input1 =16'd8; input2 =16'd52; #125;
+    end
+    endmodule
+    
+    
+  module test();
+    reg [15:0] input1;
+    reg [15:0] input2;
+    wire out;
+    wire isValid;
+    
+    addersubstractor16bit P7(.input1(input1),.input2(input2),.I(1),.S(0),.sum(out),.isValid(isValid));
+    initial begin
+        input1 =16'd3105; input2 =16'd11275;#125;
+        input1 =16'd21; input2 =16'd83;#125;
+        input1 =16'd24; input2 =16'd32; #125;
+        input1 =16'd16386; input2 =16'd353;#125;
+        input1 =16'd202; input2 =16'd97; #125;
+        input1 =16'd44; input2 =16'd9; #125;
+        input1 =16'd64; input2 =16'd65535; #125;
+        input1 =16'd8; input2 =16'd52; #125;
+    end
+    endmodule
