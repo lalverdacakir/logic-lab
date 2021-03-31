@@ -2,6 +2,6 @@
 2019.2
 Nov  6 2019
 21:57:16
-C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp3/modules.v,1617192451,verilog,,C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp3/tests.v,,addersubstractor16bit;andgate;andgatethreeinput;fulladder;fulladder16bit;fulladder4bit;halfadder;notgate;orgate;part7;xorgate;xorla,,,,,,,,
+C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp3/modules.v,1617193385,verilog,,C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp3/tests.v,,addersubstractor16bit;andgate;andgatethreeinput;fulladder;fulladder16bit;fulladder4bit;halfadder;notgate;orgate;part7;xorgate;xorla,,,,,,,,
 C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp3/tests.v,1617191902,verilog,,,,addersubstractor16bit_test;andgate_test;andgatethreeinput_test;fulladder16bit_test;fulladder4bit_test;fulladder_test;halfadder_test;notgate_test;orgate_test;part7_test;test;xor_test,,,,,,,,
 C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp3_projecect/exp3_projecect.sim/sim_1/behav/xsim/glbl.v,1573089660,verilog,,,,glbl,,,,,,,,

@@ -207,7 +207,7 @@ module part7(
     addersubstractor16bit TWOB(.input1(input2),.input2(input2),.S(0),.I(0),.sum(twoB));//2b
     
     addersubstractor16bit result(.input1(threeA),.input2(twoB),.S(0),.I(1),.sum(out));//2a
-    
+
 
     
     endmodule
