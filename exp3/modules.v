@@ -31,7 +31,7 @@ module notgate(
 endmodule
 
 module orgate(
-    input  input1, //first input
+    input  input1, //first inputDENEME
     input input2, // second input
     output  out //output
     );
