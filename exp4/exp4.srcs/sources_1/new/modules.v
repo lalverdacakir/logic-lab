@@ -59,7 +59,7 @@ module and_gate(input a,input b, output out);
     nand_gate n(a,b,wire1);
     nand_gate n1(wire1,wire1,out);
     
-    endmodule;
+    endmodule
 module check_rising(input CLK,input CLK_prev, output out);
     wire xor_res;
     
