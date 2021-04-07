@@ -96,8 +96,7 @@ module d_latch(
     
     assign Q = wire_q;
     assign Qc = wire_qc;
-    
-   endmodule
+endmodule
    
 module d_ff(
    input D,
@@ -115,5 +114,29 @@ module d_ff(
    
 endmodule
    
-   
+ module part4(
+     input LOAD,
+     input CLK,
+     input wire [15:0] in,
+     output reg out
+     );
+     reg [15:0] outp;
+     reg msb;
+     always @(posedge CLK)
+     begin 
+        if(LOAD) begin
+            outp = in;
+            out = in[15];
+        end
+        
+        else begin
+            msb = outp[15];
+            outp = outp<<1;
+            outp[0] = msb;
+            out = msb;
+        end
+      end
+      
+endmodule
+        
    

@@ -5,9 +5,11 @@ INFO: [VRFC 10-311] analyzing module sr_latch
 INFO: [VRFC 10-311] analyzing module sr_latch_with_en
 INFO: [VRFC 10-311] analyzing module d_latch
 INFO: [VRFC 10-311] analyzing module d_ff
+INFO: [VRFC 10-311] analyzing module part4
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp4/exp4.srcs/sim_1/new/sim.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module sr_latch_test
 INFO: [VRFC 10-311] analyzing module sr_latch_with_en_test
 INFO: [VRFC 10-311] analyzing module check_rising_edge_test
 INFO: [VRFC 10-311] analyzing module dff_test
 INFO: [VRFC 10-311] analyzing module d_latch_test
+INFO: [VRFC 10-311] analyzing module part4_test

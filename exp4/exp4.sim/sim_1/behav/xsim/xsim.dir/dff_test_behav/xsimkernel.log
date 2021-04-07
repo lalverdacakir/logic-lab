@@ -2,3 +2,6 @@ Running: xsim.dir/dff_test_behav/xsimk.exe -simmode gui -wdb dff_test_behav.wdb 
 Design successfully loaded
 Design Loading Memory Usage: 5836 KB (Peak: 5836 KB)
 Design Loading CPU Usage: 31 ms
+Simulation completed
+Simulation Memory Usage: 6444 KB (Peak: 6444 KB)
+Simulation CPU Usage: 31 ms
