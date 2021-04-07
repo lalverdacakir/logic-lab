@@ -28,44 +28,15 @@ module nand_gate(
     assign out = ~(input1 & input2);
 endmodule
 
-module buffer(
-    input input1,
-    output out
-    );
-    wire wire1;
-    nand_gate NAND1(input1,input1,wire1);
-    nand_gate NAND2(wire2,wire2,out);
-    
-    endmodule
 
-module xor_gate(
-    input a,
-    input b,
-    output out
-    );
-    
-    wire not_a,not_b,wire1,wire2;
-    
-    nand_gate NOTA(a,a,not_a);
-    nand_gate NOTB(b,b,not_b);
-    
-    nand_gate NAND1(a,not_b,wire1);
-    nand_gate NAND2(not_a,b,wire2);
-    
-    nand_gate NAND3(wire1,wire2,out);
-endmodule
 module and_gate(input a,input b, output out);
     wire wire1;
     nand_gate n(a,b,wire1);
     nand_gate n1(wire1,wire1,out);
     
-    endmodule
-module check_rising(input CLK,input CLK_prev, output out);
-    wire xor_res;
-    
-    xor_gate XOR1(CLK,CLK_prev,xor_res);
-    and_gate AND(xor_res,CLK,out);
 endmodule
+
+
 
 module sr_latch(
     input S,
@@ -92,11 +63,8 @@ module sr_latch_with_en(
     wire S_n, R_n;
     wire wire1,wire2;
 
-    nand_gate NAND1(R,EN,wire1);
-    nand_gate NAND2(S,EN,wire2);
-    
-    nand_gate NOT1(wire1,wire1,S_n);
-    nand_gate NOT2(wire2,wire2,R_n);
+    nand_gate NAND1(R,EN,S_n);
+    nand_gate NAND2(S,EN,R_n);
     
     wire wire_q, wire_qc;
     nand_gate NAND3(wire_qc,S_n,wire_q);
@@ -118,13 +86,9 @@ module d_latch(
     nand_gate NOT1(D,D,not_d);
     
     wire D_1, D_2;
-    wire wire1,wire2;
 
-    nand_gate NAND1(not_d,EN,wire1);
-    nand_gate NAND2(D,EN,wire2);
-    
-    nand_gate NOT2(wire1,wire1,D_1);
-    nand_gate NOT3(wire2,wire2,D_2);
+    nand_gate NAND1(not_d,EN,D_1);
+    nand_gate NAND2(D,EN,D_2);
     
     wire wire_q, wire_qc;
     nand_gate NAND3(wire_qc,D_1,wire_q);
@@ -135,18 +99,19 @@ module d_latch(
     
    endmodule
    
-   module d_ff(
+module d_ff(
    input D,
    input clk,
    output Q,
    output Qc
    );
-   wire clk_prev;
-   wire rs;
-   check_rising RS(clk,clk_prev,rs);
-   d_latch(D,rs,Q,Qc);
+   wire q_1;
+   wire not_clk;
    
-   buffer BUF(clk,clk_prev);
+   nand_gate NOT_CLOCK(clk,clk,not_clk);
+   
+   d_latch DL1(D,not_clk,q_1);
+   d_latch DL2(q_1,clk,Q,Qc);
    
 endmodule
    

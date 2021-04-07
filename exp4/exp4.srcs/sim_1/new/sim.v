@@ -64,5 +64,40 @@ module check_rising_edge_test();
     clk = 1; clk_rev = 1; #250;
     clk = 0; clk_rev = 0; #250;
     end
+ endmodule
+ 
+ module dff_test();
+ 
+    reg D, CLK;
+    
+    wire Q,Qc;
+    
+    d_ff DFF(D,CLK,Q,Qc);
+    
+    initial begin
+    CLK = 0; D=0; #125;
+    CLK = 1; D=0; #125;
+    CLK = 0; D=1; #125;
+    CLK = 1; D=1; #125;
+    CLK = 0; D = 0; #125;
+    CLK = 1; D= 1; #125;
+    CLK = 0; D = 0; #125;
+    CLK = 0; D = 0; #125;
+    
+    end
     endmodule
 
+module d_latch_test();
+reg D, EN;
+wire Q,Qc;
+
+d_latch DL(D,EN,Q,Qc);
+
+initial begin
+EN = 1;D = 1;#125;
+EN = 1; D = 0; #125;
+EN = 0; D = 0; #125;
+EN = 0; D = 1; #125;
+end
+
+endmodule
