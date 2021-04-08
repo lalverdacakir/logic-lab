@@ -45,8 +45,12 @@ module sr_latch(
     output Qc 
     );
     wire wire_q, wire_qc;
-    nand_gate NAND1(wire_qc,S,wire_q);
-    nand_gate NAND2(wire_q,R,wire_qc);
+    wire not_s,not_r;
+    
+    nand_gate NOTS(S,S,not_s);
+    nand_gate NOTR(R,R,not_r);
+    nand_gate NAND1(wire_qc,not_s,wire_q);
+    nand_gate NAND2(wire_q,not_r,wire_qc);
     
     assign Q = wire_q;
     assign Qc = wire_qc;
@@ -61,7 +65,6 @@ module sr_latch_with_en(
     output Qc
 );
     wire S_n, R_n;
-    wire wire1,wire2;
 
     nand_gate NAND1(R,EN,S_n);
     nand_gate NAND2(S,EN,R_n);
