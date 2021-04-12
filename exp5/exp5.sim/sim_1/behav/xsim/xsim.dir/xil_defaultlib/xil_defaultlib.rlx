@@ -1,0 +1,7 @@
+0.6
+2019.2
+Nov  6 2019
+21:57:16
+C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp5/exp5.sim/sim_1/behav/xsim/glbl.v,1573089660,verilog,,,,glbl,,,,,,,,
+C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp5/exp5.srcs/sim_1/new/tests.v,1618245636,verilog,,,,and_test;jk_ff_test;nand_2_input_test;nand_3_input_test;or_test;part1_test;part3_test;part4_c1_test;part4_c2_test;part4_c3_test;part4_c4_test;tff_test,,,,,,,,
+C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp5/exp5.srcs/sources_1/new/modules.v,1618247994,verilog,,C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp5/exp5.srcs/sim_1/new/tests.v,,and_gate;d_ff;d_latch;jk_ff;nand_gate_2_input;nand_gate_3_input;not_gate;or_gate;part1;part3;part4_counter1;part4_counter2;part4_counter3;part4_counter4;t_ff;xor_gate,,,,,,,,
