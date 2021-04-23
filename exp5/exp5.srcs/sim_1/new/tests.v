@@ -163,24 +163,90 @@ wire Z;
 part1 P(A,B,CLK,reset,Z);
 
 initial begin
-    CLK = 0; A=0;B=0; reset = 1; #50;
-    CLK = 1; A=0;B=0; reset = 1; #50;
-    
-    CLK = 0; A=0;B=0; reset = 0; #50;
-    CLK = 1; A=0;B=0; reset = 0;#50;
-    
-    CLK = 0; A=0;B=1; reset = 0; #50;
-    CLK = 1; A=0;B=1; reset = 0;#50;
-    
-    CLK = 0; A=0;B=0; reset = 0; #50;
-    CLK = 1; A=0;B=0; reset = 0;#50;
-    CLK = 0; A=1;B=0; reset = 0; #50;
-    CLK = 1; A=1;B=0; reset = 0;#50;
-    
-    
-    
-    CLK = 0; A=1;B=1; reset = 0; #50;
-    CLK = 1; A=1;B=1; reset = 0;#50;
+    CLK = 0; A=0;B=0; reset = 1; #15;
+    CLK = 1; A=0;B=0; reset = 1; #15;
+    //reset = state 1
+    CLK = 0; A=0;B=0; reset = 0; #15;
+    CLK = 1; A=0;B=0; reset = 0;#15;
+    // state 1 -> state 2 O: 1
+    CLK = 0; A=0;B=0; reset = 0; #15;
+    CLK = 1; A=0;B=0; reset = 0;#15;
+    //state 2 -> state 1 O:1
+    CLK = 0; A=0;B=1; reset = 0; #15;
+    CLK = 1; A=0;B=1; reset = 0;#15;
+    //state 1->state 4 O:1
+    CLK = 0; A=0;B=0; reset = 0; #15;
+    CLK = 1; A=0;B=0; reset = 0;#15;
+    //state 4->state 3 O: 0
+    CLK = 0; A=0;B=0; reset = 0; #15;
+    CLK = 1; A=0;B=0; reset = 0;#15;
+    //state 3->state 4 O: 1
+    CLK = 0; A=0;B=1; reset = 0; #15;
+    CLK = 1; A=0;B=1; reset = 0;#15;
+    //state 4->state 3 O: 0
+    CLK = 0; A=0;B=1; reset = 0; #15;
+    CLK = 1; A=0;B=1; reset = 0;#15;
+    //state 3->state 4 O: 1
+    CLK = 0; A=1;B=0; reset = 0; #15;
+    CLK = 1; A=1;B=0; reset = 0;#15;
+    //state 4->state 3 O: 0
+    CLK = 0; A=1;B=0; reset = 0; #15;
+    CLK = 1; A=1;B=0; reset = 0;#15;
+    //state 3->state 4 O: 1
+    CLK = 0; A=1;B=1; reset = 0; #15;
+    CLK = 1; A=1;B=1; reset = 0;#15;
+    //state 4->state 4 O: 1
+     CLK = 0; A=1;B=0; reset = 0; #15;
+    CLK = 1; A=1;B=0; reset = 0;#15;
+    //state 4->state 3 O: 0
+    CLK = 0; A=1;B=1; reset = 0; #15;
+    CLK = 1; A=1;B=1; reset = 0;#15;
+    //state 3->state 3 O: 0
+    CLK = 0; A=0;B=0; reset = 1; #15;
+    CLK = 1; A=0;B=0; reset = 1; #15;
+    //reset = state 1
+    CLK = 0; A=0;B=1; reset = 0; #15;
+    CLK = 1; A=0;B=1; reset = 0;#15;
+    // state 1 -> state 4 O: 1
+    CLK = 0; A=0;B=0; reset = 1; #15;
+    CLK = 1; A=0;B=0; reset = 1; #15;
+    //reset = state 1
+    CLK = 0; A=1;B=0; reset = 0; #15;
+    CLK = 1; A=1;B=0; reset = 0;#15;
+    // state 1 -> state 4 O: 1  
+    CLK = 0; A=0;B=0; reset = 1; #15;
+    CLK = 1; A=0;B=0; reset = 1; #15;
+    //reset = state 1
+    CLK = 0; A=1;B=1; reset = 0; #15;
+    CLK = 1; A=1;B=1; reset = 0;#15;
+    // state 1 -> state 3 O: 1  
+     CLK = 0; A=0;B=0; reset = 1; #15;
+    CLK = 1; A=0;B=0; reset = 1; #15;
+    //reset = state 1
+    CLK = 0; A=0;B=0; reset = 0; #15;
+    CLK = 1; A=0;B=0; reset = 0;#15;
+    // state 1 -> state 2 O: 1
+    CLK = 0; A=0;B=1; reset = 0; #15;
+    CLK = 1; A=0;B=1; reset = 0;#15;
+    // state 2 -> state 3 O: 1
+     CLK = 0; A=0;B=0; reset = 1; #15;
+    CLK = 1; A=0;B=0; reset = 1; #15;
+    //reset = state 1
+    CLK = 0; A=0;B=0; reset = 0; #15;
+    CLK = 1; A=0;B=0; reset = 0;#15;
+    // state 1 -> state 2 O: 1
+    CLK = 0; A=1;B=0; reset = 0; #15;
+    CLK = 1; A=1;B=0; reset = 0;#15;
+    // state 2 -> state 3 O: 1
+     CLK = 0; A=0;B=0; reset = 1; #15;
+    CLK = 1; A=0;B=0; reset = 1; #15;
+    //reset = state 1
+    CLK = 0; A=0;B=0; reset = 0; #15;
+    CLK = 1; A=0;B=0; reset = 0;#15;
+    // state 1 -> state 2 O: 1
+    CLK = 0; A=1;B=1; reset = 0; #15;
+    CLK = 1; A=1;B=1; reset = 0;#15;
+    // state 2 -> state 3 O: 1
     
     
   end
@@ -198,33 +264,48 @@ part3 P3(in,load,clk,direction,inc_dec,clear,out);
 initial begin
 
 
-clk = 0; clear = 0; load = 1;#10;
-clk = 1; clear = 0; load = 1;#10;
+clk = 0; clear = 0;in=16'd0; load = 1;#10;direction = 0; inc_dec = 3'd0;#30;
+clk = 1; clear = 0;in=16'd0; load = 1;#10;direction = 0; inc_dec = 3'd0;#30;
 
-clk = 0; clear = 1; in = 16'hffff; load = 0; #10 ;
-clk = 1; clear = 1; in = 16'hffff; load = 0; #10;
+clk = 0; clear = 1; in = 16'hfffd; load = 0;direction = 0; inc_dec = 3'd0; #30 ;
+clk = 1; clear = 1; in = 16'hfffd; load = 0;direction = 0; inc_dec = 3'd0; #30;
 
-clk = 0; clear = 1; load = 1; direction = 0; inc_dec = 3'd3;#10;
-clk = 1; clear = 1; load = 1; direction = 0; inc_dec = 3'd3;#10;
+clk = 0; clear = 1; load = 1; direction = 1; inc_dec = 3'd3;#30;
+clk = 1; clear = 1; load = 1; direction = 1; inc_dec = 3'd3;#30;
 
-clk = 0; clear = 1;load = 1; direction = 0; inc_dec = 3'd3;#10;
-clk = 1; clear = 1;load = 1; direction = 0; inc_dec = 3'd3;#10;
+clk = 0; clear = 1;load = 1; direction = 1; inc_dec = 3'd3;#30;
+clk = 1; clear = 1;load = 1; direction = 1; inc_dec = 3'd3;#30;
 
-clk = 0; clear = 1; load = 1; direction = 0; inc_dec = 3'd3;#10;
-clk = 1; clear = 1; load = 1; direction = 0; inc_dec = 3'd3;#10;
+clk = 0; clear = 1; load = 1; direction = 1; inc_dec = 3'd3;#30;
+clk = 1; clear = 1; load = 1; direction = 1; inc_dec = 3'd3;#30;
 
-clk = 0; clear = 0; load = 1; direction = 0;#10;
-clk = 1; clear = 0; load = 1; direction = 0;#10;
+clk = 0; clear = 1; load = 1; direction = 1; inc_dec = 3'd3;#30;
+clk = 1; clear = 1; load = 1; direction = 1; inc_dec = 3'd3;#30;
 
-clk = 0; clear = 1; in = 16'd0; load = 0; #10;
-clk = 1; clear = 1; in = 16'd0; load = 0; #10;
+clk = 0; clear = 1;load = 1; direction = 1; inc_dec = 3'd3;#30;
+clk = 1; clear = 1;load = 1; direction = 1; inc_dec = 3'd3;#30;
+
+clk = 0; clear = 1; load = 1; direction = 1; inc_dec = 3'd3;#30;
+clk = 1; clear = 1; load = 1; direction = 1; inc_dec = 3'd3;#30;
+
+clk = 0; clear = 0; load = 1; direction = 0;#30;
+clk = 1; clear = 0; load = 1; direction = 0;#30;
+
+clk = 0; clear = 1; in = 16'd10; load = 0; #30;
+clk = 1; clear = 1; in = 16'd10; load = 0; #30;
 
 
-clk = 0; clear = 1; load = 1; direction = 0; inc_dec = 3'd7;#10;
-clk = 1; clear = 1; load = 1; direction = 0; inc_dec = 3'd7;#10;
+clk = 0; clear = 1; load = 1; direction = 0; inc_dec = 3'd7;#30;
+clk = 1; clear = 1; load = 1; direction = 0; inc_dec = 3'd7;#30;
 
-clk = 0; clear = 1; load = 1; direction = 0; inc_dec = 3'd7;#10;
-clk = 1; clear = 1; load = 1; direction = 0; inc_dec = 3'd7;#10;
+clk = 0; clear = 1; load = 1; direction = 0; inc_dec = 3'd7;#30;
+clk = 1; clear = 1; load = 1; direction = 0; inc_dec = 3'd7;#30;
+
+clk = 0; clear = 1; load = 1; direction = 0; inc_dec = 3'd7;#30;
+clk = 1; clear = 1; load = 1; direction = 0; inc_dec = 3'd7;#30;
+
+clk = 0; clear = 1; load = 1; direction = 0; inc_dec = 3'd7;#30;
+clk = 1; clear = 1; load = 1; direction = 0; inc_dec = 3'd7;#30;
 
 end
 
@@ -647,3 +728,4 @@ initial begin
     
 end
 endmodule
+
