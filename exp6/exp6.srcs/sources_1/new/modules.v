@@ -53,23 +53,6 @@ assign out = bus;
 
 endmodule
 
-module part1(
-input [7:0] data1,
-input [7:0] data2,
-input select,
-output [7:0] out
-);
-wire [7:0] bus;
-wire not_select;
-
-not_gate NOT1(select,not_select);
-
-tri_state_buffer O1(data1,not_select, bus);
-tri_state_buffer O2(data2,select, bus);
-
-assign out = bus;
-
-endmodule
 
 module part2(
 input [7:0] data1,
@@ -105,19 +88,11 @@ input line_select,
 input read_enable,
 input write_enable,
 input CLK,
-output reg [7:0] out
+output [7:0] out
 );
 
 reg [7:0] stored_value;
-wire output_wire;
-always @* begin
-    if(read_enable==1'b1 && line_select == 1'b1) begin
-        out = stored_value;
-    end
-    else begin
-        out = 8'bzzzzzzzz;
-    end
-end
+
 always @(posedge CLK) begin
     if(line_select && write_enable)begin
         stored_value = data;
@@ -127,6 +102,9 @@ end
 always @(negedge reset) begin
     stored_value = 8'd0;
 end
+
+assign out = (read_enable==1'b1 && line_select == 1'b1) ? stored_value : 8'bzzzzzzzz;
+
 
 
 endmodule
@@ -142,21 +120,25 @@ input CLK,
 output [7:0] out
 );
 reg [7:0] line_select;
-wire [7:0] out0,out1,out2,out3,out4,out5,out6,out7;
 always @* begin
-    if(chip_select) begin
-        case(address)
-            3'b000 : line_select = 8'b00000001; 
-            3'b001 : line_select = 8'b00000010; 
-            3'b010 : line_select = 8'b00000100; 
-            3'b011 : line_select = 8'b00001000; 
-            3'b100 : line_select = 8'b00010000; 
-            3'b101 : line_select = 8'b00100000; 
-            3'b110 : line_select = 8'b01000000; 
-            3'b111 : line_select = 8'b10000000; 
-        endcase
+    if(chip_select == 1) begin
+    case(address)
+        3'b000 : line_select = 8'b00000001; 
+        3'b001 : line_select = 8'b00000010; 
+        3'b010 : line_select = 8'b00000100; 
+        3'b011 : line_select = 8'b00001000; 
+        3'b100 : line_select = 8'b00010000; 
+        3'b101 : line_select = 8'b00100000; 
+        3'b110 : line_select = 8'b01000000; 
+        3'b111 : line_select = 8'b10000000; 
+
+    endcase
+    end else begin
+    line_select = 8'd0;
     end
 end
+
+wire [7:0] out0,out1,out2,out3,out4,out5,out6,out7;
 
 part3 L0(data,reset,line_select[0],read_enable,write_enable,CLK,out0);
 part3 L1(data,reset,line_select[1],read_enable,write_enable,CLK,out1);
@@ -197,13 +179,14 @@ output [7:0] out
 );
 reg [3:0]chip_select ;
 reg [2:0] line_select;
+
 always @* begin
     line_select = address[2:0];
     case(address[4:3])
-        3'b00 : chip_select = 4'b0001; 
-        3'b01 : chip_select = 4'b0010; 
-        3'b10 : chip_select = 4'b0100; 
-        3'b11 : chip_select = 4'b1000; 
+        2'b00 : chip_select = 4'b0001; 
+        2'b01 : chip_select = 4'b0010; 
+        2'b10 : chip_select = 4'b0100; 
+        2'b11 : chip_select = 4'b1000; 
     endcase
 end
 
@@ -234,8 +217,8 @@ output [31:0] out
 
 wire [7:0] out0,out1,out2,out3;
 
-part5 L0(data[31:23],address,reset,read_enable,write_enable,CLK,out0);
-part5 L1(data[23:15],address,reset,read_enable,write_enable,CLK,out1);
+part5 L0(data[31:24],address,reset,read_enable,write_enable,CLK,out0);
+part5 L1(data[23:16],address,reset,read_enable,write_enable,CLK,out1);
 part5 L2(data[15:8],address,reset,read_enable,write_enable,CLK,out2);
 part5 L3(data[7:0],address,reset,read_enable,write_enable,CLK,out3);
 

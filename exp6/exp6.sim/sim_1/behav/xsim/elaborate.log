@@ -1,11 +1,9 @@
 Vivado Simulator 2019.2
 Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 9b5f0cd357ca4d7e926aa1e6c20bf7e9 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot part6_test_behav xil_defaultlib.part6_test xil_defaultlib.glbl -log elaborate.log 
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 9b5f0cd357ca4d7e926aa1e6c20bf7e9 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot part4_test_behav xil_defaultlib.part4_test xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3091] actual bit length 9 differs from formal bit length 8 for port 'data' [C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp6/exp6.srcs/sources_1/new/modules.v:237]
-WARNING: [VRFC 10-3091] actual bit length 9 differs from formal bit length 8 for port 'data' [C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp6/exp6.srcs/sources_1/new/modules.v:238]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -13,8 +11,6 @@ Time Resolution for simulation is 1ps
 Compiling module xil_defaultlib.part3
 Compiling module xil_defaultlib.tri_state_buffer
 Compiling module xil_defaultlib.part4
-Compiling module xil_defaultlib.part5
-Compiling module xil_defaultlib.part6
-Compiling module xil_defaultlib.part6_test
+Compiling module xil_defaultlib.part4_test
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot part6_test_behav
+Built simulation snapshot part4_test_behav

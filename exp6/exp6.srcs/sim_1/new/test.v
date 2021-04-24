@@ -40,7 +40,7 @@ module tri_state_buffer_test();
     in = 8'd10; enable = 0; #250;
     in = 8'd10; enable = 0; #250;
     in = 8'd10; enable = 1; #250;
-    in = 8'd10; enable = 1; #250;
+    in = 8'd20; enable = 1; #250;
     
     end
     
@@ -77,21 +77,36 @@ module part3_test();
     reg reset,line_select,read_enable,write_enable,CLK;
     wire [7:0] out;
     part3 P3(data,reset,line_select,read_enable,write_enable,CLK,out);
+   
+    always #50 CLK = ~CLK;
     initial begin
-    CLK = 0; data = 8'd20; reset = 0; line_select = 0; read_enable = 0; write_enable = 0; #50;
-    CLK = 1; data = 8'd20; reset = 0; line_select = 0; read_enable = 0; write_enable = 0; #50;
-    CLK = 0; data = 8'd20; reset = 0; line_select = 1; read_enable = 1; write_enable = 0; #50;
-    CLK = 1; data = 8'd20; reset = 0; line_select = 0; read_enable = 0; write_enable = 0; #50;
-    CLK = 0; data = 8'd20; reset = 0; line_select = 1; read_enable = 0; write_enable = 1; #50;
-    CLK = 1; data = 8'd20; reset = 0; line_select = 1; read_enable = 0; write_enable = 1; #50;
+    CLK=0; data = 8'd0; line_select = 0; read_enable = 0; write_enable = 0;
+    reset = 1; #50;
+    reset = 0; #50; //reseting
+    
+    data = 8'd20; line_select = 1; read_enable = 0; write_enable = 1; #50;
+    data = 8'd20; line_select = 1; read_enable = 0; write_enable = 1; #50;
+    //line select and write enable is hihg -> writing data
+    
+    line_select = 1; read_enable = 1; write_enable = 0; #50;
+    line_select = 1; read_enable = 1; write_enable = 0; #50;
+    //line select and write enable is high -> reading data
+    
+    
+    line_select = 0; read_enable = 0; write_enable = 0; #50;
+    line_select = 0; read_enable = 0; write_enable = 0; #50;
+    //line select and read enable is low-> output zzzz
      
-    CLK = 0; data = 8'd20; reset = 0; line_select = 1; read_enable = 1; write_enable = 0; #50;
-    CLK = 1; data = 8'd20; reset = 0; line_select = 0; read_enable = 0; write_enable = 0; #50;
-    CLK = 0; data = 8'd20; reset = 1; line_select = 0; read_enable = 0; write_enable = 0; #50;
-    CLK = 1; data = 8'd20; reset = 0; line_select = 0; read_enable = 0; write_enable = 0; #50;
-     
-    CLK = 0; data = 8'd20; reset = 0; line_select = 1; read_enable = 1; write_enable = 0; #50;
-    CLK = 1; data = 8'd20; reset = 0; line_select = 0; read_enable = 0; write_enable = 0; #50;
+    reset = 1; #50;
+    reset = 0; #50;
+    //reseting
+    
+    
+    line_select = 1; read_enable = 1; write_enable = 0; #50;
+    line_select = 1; read_enable = 1; write_enable = 0; #50;
+    //line select and write enable is high -> reading data
+    
+    data = 8'd0;reset=0; line_select = 0; read_enable = 0; write_enable = 0;
     end
 endmodule
 
@@ -108,36 +123,70 @@ reg CLK;
 wire [7:0] out;
 
 part4 P4(data,address,chip_select,reset,read_enable,write_enable,CLK,out);
-
+always #10 CLK = ~CLK;
 initial begin
 
-CLK = 0;data = 8'd8; address = 3'd0;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 1;data = 8'd8;chip_select = 0;reset=0;write_enable = 1;read_enable = 1;#10;
-CLK = 0;data = 8'd10; address = 3'd1;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 1;data = 8'd10;chip_select = 0;reset=0;write_enable = 1;read_enable = 1;#10;
-CLK = 0;data = 8'd12;address = 3'd2;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 1;data = 8'd12;chip_select = 0;reset=0;write_enable = 1;read_enable = 1;#10;
-CLK = 0;data = 8'd14;address = 3'd3;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 1;data = 8'd14;chip_select = 0;reset=0;write_enable = 1;read_enable = 1;#10;
-CLK = 0;data = 8'd16;address = 3'd4;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 1;data = 8'd16;chip_select = 0;reset=0;write_enable = 1;read_enable = 1;#10;
-CLK = 0;data = 8'd18;address = 3'd5;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 1;data = 8'd18;chip_select = 0;reset=0;write_enable = 1;read_enable = 1;#10;
-CLK = 0;data = 8'd20;address = 3'd6;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 1;data = 8'd20;chip_select = 0;reset=0;write_enable = 1;read_enable = 1;#10;
-CLK = 0;data = 8'd22;address = 3'd7;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 1;data = 8'd22;chip_select = 0;reset=0;write_enable = 1;read_enable = 1;#10;
+CLK = 0; data = 8'd0; address = 3'd0; chip_select = 0; read_enable = 0; write_enable = 0;
+reset = 1; #10;
+reset = 0; #10;
+//resetting
 
-CLK = 0;chip_select = 0;reset=1;write_enable = 0;read_enable = 0;#10;
-CLK = 1;chip_select = 0;reset=0;write_enable = 0;read_enable = 0;#10;
-CLK = 0;data = 8'd8; address = 3'd0;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 1;data = 8'd10; address = 3'd1;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 0;data = 8'd12;address = 3'd2;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 1;data = 8'd14;address = 3'd3;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 0;data = 8'd16;address = 3'd4;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 1;data = 8'd18;address = 3'd5;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 0;data = 8'd20;address = 3'd6;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
-CLK = 1;data = 8'd22;address = 3'd7;chip_select = 1;reset=0;write_enable = 0;read_enable = 1;#10;
+data = 8'd8; address = 3'd0; chip_select = 1;write_enable = 1; #20;//selecting and writing 8 to 0
+
+data = 8'd4; address = 3'd1; chip_select = 1;write_enable = 1; #20;//selecting and writing 4 to 1
+
+data = 8'd32; address = 3'd2; chip_select = 1;write_enable = 1; #20;//selecting and writing 32 to 2
+
+data = 8'd16; address = 3'd3; chip_select = 1; write_enable = 1; #20;//selecting and writing 16 to 3
+
+data = 8'd45; address = 3'd4; chip_select = 1; write_enable = 1; #20;//selecting and writing 45 to 4
+
+data = 8'd13; address = 3'd5; chip_select = 1; write_enable = 1; #20;//selecting and writing 13 to 5
+
+data = 8'd24; address = 3'd6; chip_select = 1; write_enable = 1; #20;//selecting and writing 24 to 6
+
+
+data = 8'd20;address = 3'd7; chip_select = 1; write_enable = 1; #20;//selecting writing 30 to 7
+
+
+write_enable = 0; data = 8'd0;
+
+
+address = 3'd0; chip_select = 1; read_enable = 1; #20;//selcting and reading 0;
+
+address = 3'd1; chip_select = 1; read_enable = 1; #20; //selcting reading 1;
+
+address = 3'd2; chip_select = 1; read_enable = 1; #20; //selecting and reading 2;
+
+address = 3'd3; chip_select = 1;read_enable = 1; #20;  //selecting and reading 3;
+
+address = 3'd4; chip_select = 1; read_enable = 1; #20;  //selecting and reading 4;
+
+address = 3'd5; chip_select = 1; read_enable = 1; #20;  //selecting and reading 5;
+
+address = 3'd6; chip_select = 1; read_enable = 1; #20;  //selecting and reading 6;
+
+address = 3'd7; chip_select = 1; read_enable = 1; #20;  //selecting and reading 7;
+
+reset = 1; #10;
+reset = 0; #10;
+//resetting
+
+address = 3'd0; chip_select = 1; read_enable = 1; #20;//selcting and reading 0;
+
+address = 3'd1; chip_select = 1; read_enable = 1; #20; //selcting reading 1;
+
+address = 3'd2; chip_select = 1; read_enable = 1; #20; //selecting and reading 2;
+
+address = 3'd3; chip_select = 1;read_enable = 1; #20;  //selecting and reading 3;
+
+address = 3'd4; chip_select = 1; read_enable = 1; #20;  //selecting and reading 4;
+
+address = 3'd5; chip_select = 1; read_enable = 1; #20;  //selecting and reading 5;
+
+address = 3'd6; chip_select = 1; read_enable = 1; #20;  //selecting and reading 6;
+
+address = 3'd7; chip_select = 1; read_enable = 1; #20;  //selecting and reading 7;
 
 end
 
@@ -154,37 +203,31 @@ wire [7:0] out;
 
 part5 P5(data,address,reset,read_enable,write_enable,CLK,out);
 
+always #50 CLK = ~CLK;
 initial begin
-CLK = 0; reset = 1; #50;
-CLK = 1; reset = 0; #50;
+CLK = 0; data= 8'd0; address = 5'd00; write_enable = 0; read_enable = 0;
+reset = 1; #50;
+reset = 0; #50;
 
-CLK = 0; data = 8'd16; address = 5'd00; write_enable = 1;read_enable = 0;#50;
-CLK = 1; data = 8'd16; address = 5'd00; write_enable = 1;read_enable = 0;#50;
+data = 8'd25; address = 5'd30; write_enable = 1;#100;
 
-CLK = 0; data = 8'd8; address = 5'd01; write_enable = 1;read_enable = 0;#50;
-CLK = 1; data = 8'd8; address = 5'd01; write_enable = 1;read_enable = 0;#50;
+data = 8'd15; address = 5'd20; write_enable = 1;#100;
 
+write_enable = 0;
+address = 5'd12; read_enable = 1;#100;
 
-CLK = 0; data = 8'd15; address = 5'd00; write_enable = 0;read_enable = 1;#50;
-CLK = 1; data = 8'd15; address = 5'd00; write_enable = 0;read_enable = 1;#50;
-
-CLK = 0; data = 8'd18; address = 5'b11001; write_enable = 1;read_enable = 0;#50;
-CLK = 1; data = 8'd18; address = 5'b11001; write_enable = 1;read_enable = 0;#50;
+read_enable = 0;
+data = 8'd18; address = 5'd10; write_enable = 1;#100;
 
 
-CLK = 0; data = 8'd15; address = 5'b11001; write_enable = 0;read_enable = 1;#50;
-CLK = 1; data = 8'd15; address = 5'b11001; write_enable = 0;read_enable = 1;#50;
+write_enable = 0;
+address = 5'd15; read_enable = 1;#100;
+write_enable = 0;
+address = 5'd30; read_enable = 1;#100;
+write_enable = 0;
+address = 5'd10; read_enable = 1;#100;
 
-
-CLK = 0; data = 8'd15; address = 5'd30; write_enable = 0;read_enable = 1;#50;
-CLK = 1; data = 8'd15; address = 5'd30; write_enable = 0;read_enable = 1;#50;
-
-
-CLK = 0; data = 8'd15; address = 5'b11001; write_enable = 0;read_enable = 1;#50;
-CLK = 1; data = 8'd15; address = 5'b11001; write_enable = 0;read_enable = 1;#50;
-
-CLK = 0; data = 8'd15; address = 5'd01; write_enable = 0;read_enable = 1;#50;
-CLK = 1; data = 8'd15; address = 5'd01; write_enable = 0;read_enable = 1;#50;
+read_enable = 0;address = 5'd0;
 
 
 end
@@ -201,37 +244,63 @@ wire [31:0] out;
 
 part6 P6(data,address,reset,read_enable,write_enable,CLK,out);
 
+always #50 CLK = ~CLK;
 initial begin
-CLK = 0; reset = 1; #50;
-CLK = 1; reset = 0; #50;
+CLK = 0; data = 32'd0; address = 5'd0; write_enable = 0; read_enable=0;
+reset = 1; #50;
+reset = 0; #50;
 
-CLK = 0; data = 32'd200; address = 5'd00; write_enable = 1;read_enable = 0;#50;
-CLK = 1; data = 32'd200; address = 5'd00; write_enable = 1;read_enable = 0;#50;
+data = 32'd23030; address = 5'd00; write_enable = 1;#100;
 
-CLK = 0; data = 32'd400; address = 5'd01; write_enable = 1;read_enable = 0;#50;
-CLK = 1; data = 32'd400; address = 5'd01; write_enable = 1;read_enable = 0;#50;
+data = 32'd223030; address = 5'd20; write_enable = 1;#100;
+
+data = 32'd2254030; address = 5'd80; write_enable = 1;#100;
+
+write_enable = 0;#50;
+
+address = 5'd00; read_enable = 1; #100;
+address = 5'd20; read_enable = 1; #100;
+address = 5'd80; read_enable = 1; #100;
+address = 5'd100; read_enable = 1; #100;
+
+read_enable = 0; address = 5'd0;
+
+end
+endmodule
+
+module test();
+reg [7:0] data;
+reg [4:0] address;
+reg reset;
+reg read_enable;
+reg write_enable;
+reg CLK;
+wire [7:0] out;
+
+part5 P5(data,address,reset,read_enable,write_enable,CLK,out);
+
+always #50 CLK = ~CLK;
+initial begin
+CLK = 0; data= 8'd0; address = 5'd00; write_enable = 0; read_enable = 0;
+reset = 1; #50;
+reset = 0; #50;
+
+data = 8'd25; address = 5'd25; write_enable = 1;#100;
+
+data = 8'd15; address = 5'd20; write_enable = 1;#100;
+
+data = 8'd54; address = 5'd80; write_enable = 1;#100;
+
+write_enable = 0; #100;
+address = 5'd0; read_enable = 1;#100;
+address = 5'd20; read_enable = 1;#100;
+address = 5'd80; read_enable = 1;#100;
+address = 5'd25; read_enable = 1;#100;
 
 
-CLK = 0; data = 32'd15; address = 5'd00; write_enable = 0;read_enable = 1;#50;
-CLK = 1; data = 32'd15; address = 5'd00; write_enable = 0;read_enable = 1;#50;
-
-CLK = 0; data = 32'd18; address = 5'b11001; write_enable = 1;read_enable = 0;#50;
-CLK = 1; data = 32'd18; address = 5'b11001; write_enable = 1;read_enable = 0;#50;
 
 
-CLK = 0; data = 32'd15; address = 5'b11001; write_enable = 0;read_enable = 1;#50;
-CLK = 1; data = 32'd15; address = 5'b11001; write_enable = 0;read_enable = 1;#50;
-
-
-CLK = 0; data = 32'd15; address = 5'd30; write_enable = 0;read_enable = 1;#50;
-CLK = 1; data = 32'd15; address = 5'd30; write_enable = 0;read_enable = 1;#50;
-
-
-CLK = 0; data = 32'd15; address = 5'b11001; write_enable = 0;read_enable = 1;#50;
-CLK = 1; data = 32'd15; address = 5'b11001; write_enable = 0;read_enable = 1;#50;
-
-CLK = 0; data = 32'd15; address = 5'd01; write_enable = 0;read_enable = 1;#50;
-CLK = 1; data = 32'd15; address = 5'd01; write_enable = 0;read_enable = 1;#50;
+read_enable = 0;address = 5'd0;
 
 
 end
