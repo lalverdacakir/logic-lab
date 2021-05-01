@@ -102,7 +102,6 @@ end
 always @(negedge reset) begin
     stored_value = 8'd0;
 end
-
 assign out = (read_enable==1'b1 && line_select == 1'b1) ? stored_value : 8'bzzzzzzzz;
 
 
