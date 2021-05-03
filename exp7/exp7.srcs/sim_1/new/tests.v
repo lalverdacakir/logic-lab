@@ -174,7 +174,21 @@ reg isBranchEqual;
 reg [7:0] immediateAddress;
 wire [7:0] PC;
 
-pc
+pc_counter PCR(reset,zeroFlag,CLK,isBranch, isBranchNotEqual, isBranchEqual,immediateAddress,PC);
+always #50 CLK = ~CLK;
+initial begin
+CLK = 0; reset = 1; #50;
+reset = 0; #50;
+
+zeroFlag = 0; isBranch = 0; isBranchNotEqual = 0; isBranchEqual = 0; immediateAddress = 8'd10; #100;
+zeroFlag = 0; isBranch = 1; isBranchNotEqual = 0; isBranchEqual = 1; immediateAddress = 8'd10; #100;
+zeroFlag = 0; isBranch = 1; isBranchNotEqual = 1; isBranchEqual = 0; immediateAddress = 8'd10; #100;
+
+zeroFlag = 1; isBranch = 0; isBranchNotEqual = 0; isBranchEqual = 0; immediateAddress = 8'd10; #100;
+zeroFlag = 1; isBranch = 1; isBranchNotEqual = 0; isBranchEqual = 1; immediateAddress = 8'd10; #100;
+zeroFlag = 1; isBranch = 1; isBranchNotEqual = 1; isBranchEqual = 0; immediateAddress = 8'd10; #100;
+
+end
 endmodule
 
 module computer_test();

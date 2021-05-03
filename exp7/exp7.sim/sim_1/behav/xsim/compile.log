@@ -16,5 +16,6 @@ INFO: [VRFC 10-311] analyzing module decoder_test
 INFO: [VRFC 10-311] analyzing module register_line_test
 INFO: [VRFC 10-311] analyzing module register_file_test
 INFO: [VRFC 10-311] analyzing module ALU_test
+INFO: [VRFC 10-311] analyzing module pc_counter_test
 INFO: [VRFC 10-311] analyzing module computer_test
 INFO: [VRFC 10-311] analyzing module instruction_decoder_test
