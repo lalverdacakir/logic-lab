@@ -3,5 +3,5 @@
 Nov  6 2019
 21:57:16
 C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp7/exp7.sim/sim_1/behav/xsim/glbl.v,1573089660,verilog,,,,glbl,,,,,,,,
-C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp7/exp7.srcs/sim_1/new/tests.v,1619876457,verilog,,,,ALU_test;decoder_test;register_file_test,,,,,,,,
-C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp7/exp7.srcs/sources_1/new/modules.v,1619875900,verilog,,C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp7/exp7.srcs/sim_1/new/tests.v,,ALU;d_ff;d_latch;decoder;nand_gate;register_file;register_line;tri_state_buffer,,,,,,,,
+C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp7/exp7.srcs/sim_1/new/tests.v,1620072411,verilog,,,,ALU_test;computer_test;decoder_test;instruction_decoder_test;register_file_test;register_line_test,,,,,,,,
+C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp7/exp7.srcs/sources_1/new/modules.v,1620071261,verilog,,C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp7/exp7.srcs/sim_1/new/tests.v,,ALU;ProgramMemory;computer;d_ff;d_latch;decoder;instruction_decoder;nand_gate;pc_counter;register_file;register_line;tri_state_buffer,,,,,,,,

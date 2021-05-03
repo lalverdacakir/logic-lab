@@ -7,7 +7,14 @@ INFO: [VRFC 10-311] analyzing module d_ff
 INFO: [VRFC 10-311] analyzing module register_line
 INFO: [VRFC 10-311] analyzing module register_file
 INFO: [VRFC 10-311] analyzing module ALU
+INFO: [VRFC 10-311] analyzing module instruction_decoder
+INFO: [VRFC 10-311] analyzing module pc_counter
+INFO: [VRFC 10-311] analyzing module ProgramMemory
+INFO: [VRFC 10-311] analyzing module computer
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Administrator/Documents/Github/Logic-Lab-Exp-2/exp7/exp7.srcs/sim_1/new/tests.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module decoder_test
+INFO: [VRFC 10-311] analyzing module register_line_test
 INFO: [VRFC 10-311] analyzing module register_file_test
 INFO: [VRFC 10-311] analyzing module ALU_test
+INFO: [VRFC 10-311] analyzing module computer_test
+INFO: [VRFC 10-311] analyzing module instruction_decoder_test

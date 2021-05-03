@@ -249,13 +249,13 @@ always @*begin
        value =  srcA ^ srcB;
     end
     3'd5: begin
-       value =  srcA ^ srcB;
-    end
-    3'd6: begin
        value =  srcA >> srcB;
     end
-    3'd7: begin
+    3'd6: begin
        value =  srcA << srcB;
+    end
+    3'd7: begin
+       value =   srcB;
     end
   
     
@@ -293,9 +293,11 @@ assign opcode = instruction[15:12];
 assign isLoad = (opcode == 4'd7) ? 1:0;
 assign isImmediate = (opcode == 4'd8) | (opcode == 4'd9) | (opcode == 4'd10) ? 1:0;
 assign isBranch = (opcode == 4'd13) | (opcode == 4'd14) | (opcode == 4'd15) ? 1:0;
+assign isBranchNotEqual = (opcode == 4'd14) ? 1:0; 
+assign isBranchEqual = (opcode == 4'd15) ? 1:0; 
 assign writeEnable = (opcode < 4'd11) ? 1:0;
 
-assign selA = (opcode < 4'd7) | (opcode == 4'd8) | (opcode == 4'd9) | (opcode == 4'd10) | (opcode == 4'd11)? instruction[7:4] : 4'bzzzz;
+assign selA = (opcode < 4'd7) | (opcode == 4'd8) | (opcode == 4'd9) | (opcode == 4'd10) | (opcode == 4'd11) ? instruction[7:4] : 4'bzzzz;
 //zz k?sm? kontrol edilmedi
 assign selB = (opcode < 4'd7) | (opcode == 4'd11)? instruction[3:0] : 4'bzzzz;
 //zz k?sm? kontrol edilmedi
@@ -304,8 +306,6 @@ assign fourBitImmediate = (opcode == 4'd8) | (opcode == 4'd9) | (opcode == 4'd10
 assign eightBitImmediate =(opcode == 4'd7) | (opcode == 4'd13) | (opcode == 4'd14) | (opcode == 4'd15) ?{8'd0, instruction[7:0]}:16'bzzzzzzzzzzzzzzzz;
 
 assign selWrite = opcode < 4'd11 ? instruction[11:8]: 4'bzzzz;
-assign isBranchNotEqual = opcode == 4'd14 ? 1:0; 
-assign isBranchEqual = opcode == 4'd15 ? 1:0; 
 
 
 endmodule
@@ -319,7 +319,7 @@ input isBranch,
 input isBranchNotEqual,
 input isBranchEqual,
 input [7:0] immediateAddress,
-output PC
+output [7:0] PC
 );
 reg [7:0] pc;
 always @(negedge reset) begin
@@ -327,7 +327,7 @@ always @(negedge reset) begin
 end
 
 always @(posedge CLK) begin
-    if(isBranch & isBranchNotEqual==0 & isBranchNotEqual ==0 ) begin
+    if(isBranch & isBranchNotEqual==0 & isBranchEqual ==0 ) begin
         pc = immediateAddress;
     end else if(isBranch & isBranchNotEqual==1 & isBranchEqual ==0 ) begin
         if(zeroFlag != 1) begin
@@ -372,9 +372,9 @@ module computer(
     output [15:0] INSTRUCTION,
     output [15:0] DATAA,
     output [15:0] DATAB,
-    output DST,
-    output PC,
-    output SRCB
+    output [15:0] DST,
+    output [7:0] PC,
+    output [15:0] SRCB
 );
 wire [7:0] pc;
 wire [15:0] instruction;
@@ -395,19 +395,16 @@ wire [15:0] dst;
 wire [15:0] dataA;
 
 wire [15:0] dataB;
-reg [15:0] srcB;
+wire [15:0] srcB;
 
 ProgramMemory mem(pc,instruction);
 
-instruction_decoder INS_D(.instruction(instruction),.opcode(opcode),.selWrite(selWrite),.selA(selA),.selB(selB),.fourBitImmediate(fourBitImmediate),.writeEnable(writeEnable),.isLoad(isLoad),.isImmediate(isImmediate),.isBranch(isBranch),.isBranchNotEqual(isBranchNotEqual),.isBranchEqual(isBranchEqual));
+instruction_decoder INS_D(.instruction(instruction),.opcode(opcode),.selWrite(selWrite),.selA(selA),.selB(selB),.eightBitImmediate(eightBitImmediate), .fourBitImmediate(fourBitImmediate),.writeEnable(writeEnable),.isLoad(isLoad),.isImmediate(isImmediate),.isBranch(isBranch),.isBranchNotEqual(isBranchNotEqual),.isBranchEqual(isBranchEqual));
 
-register_file RF(.CLK(CLK),.reset(reset),.selA(selA),.selB(selB),.selWrite(selWrite),.dataIn(dst),.writeEnable(writeEnable),.dataA(),.dataB());
-always @* begin
-    if(isLoad | isBranch) srcB = eightBitImmediate;
-    if(isImmediate) srcB = fourBitImmediate;
-    if((opcode < 4'd7) | (opcode == 4'd11)) srcB = dataB;
-end
+register_file RF(.CLK(CLK),.reset(reset),.selA(selA),.selB(selB),.selWrite(selWrite),.dataIn(dst),.writeEnable(writeEnable),.dataA(dataA),.dataB(dataB));
 
+assign srcB = (isLoad | isBranch) ? eightBitImmediate: (isImmediate)? fourBitImmediate:((opcode < 4'd7) | (opcode == 4'd11))? dataB:4'bzzzz;
+//assign srcB = 4'h0025;
 ALU alu(.srcA(dataA),.srcB(srcB),.opcode(opcode[2:0]),.CLK(CLK),.reset(reset),.zeroFlag(zeroFlag),.dst(dst));
 
 pc_counter PC_C(.zeroFlag(zeroFlag),.reset(reset),.CLK(CLK),.isBranch(isBranch),.isBranchNotEqual(isBranchNotEqual),.isBranchEqual(isBranchEqual),.immediateAddress(eightBitImmediate[8:0]),.PC(pc));
@@ -417,8 +414,10 @@ assign DST = dst;
 assign DATAA = dataA;
 assign DATAB = dataB;
 assign PC = pc;
+assign INSTRUCTION = instruction;
 
 endmodule
+
 
 
     
