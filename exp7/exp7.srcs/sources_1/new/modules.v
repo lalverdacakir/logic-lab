@@ -1,3 +1,4 @@
+
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -70,6 +71,14 @@ module decoder(
     
     assign out = enable == 1 ? out_reg: 16'd0 ;
     
+endmodule
+
+module decoder4_16(
+    input wire[3:0] select,
+    input wire enable,
+    output wire [15:0] out
+);
+    assign out = enable? 16'd1<<select :16'd0;
 endmodule
 
 
@@ -167,6 +176,7 @@ register_line L12(.dataIn(dataIn),.line_select(address[12]),.reset(reset),.CLK(C
 register_line L13(.dataIn(dataIn),.line_select(address[13]),.reset(reset),.CLK(CLK),.out(out13));
 register_line L14(.dataIn(dataIn),.line_select(address[14]),.reset(reset),.CLK(CLK),.out(out14));
 register_line L15(.dataIn(dataIn),.line_select(address[15]),.reset(reset),.CLK(CLK),.out(out15));
+
 
 wire [15:0] selA_bus;
 decoder D1(.select(selA),.enable(1),.out(selA_bus));
@@ -418,7 +428,42 @@ assign INSTRUCTION = instruction;
 
 endmodule
 
+module RegisterFile(
+    input wire [3:0] selA,
+    input wire [3:0] selB,
+    input wire [3:0] selWrite,
+    input wire [15:0] data_in,
+    input wire reset,
+    input wire writeEnable,
+    input wire clock,
+    output reg [15:0] dataA,
+    output reg [15:0] dataB
+);
+    wire[15:0] chip_select_bus;
+    wire[15:0] register_outputs[15:0];
+    
+    decoder4_16 chipselect(selWrite,writeEnable, chip_select_bus);
+    
+     generate
+        genvar x;
+            for(x = 0; x<16; x = x + 1) 
+            begin: RegFileGenerate
+                register_line regLine(
+                        chip_select_bus[x],
+                        clock,
+                        reset,
+                        data_in,
+                        register_outputs[x]
+                        );
+            end
+    endgenerate
+    
+    always @(*) begin
+        dataA <= register_outputs[selA];
+        dataB <= register_outputs[selB];
+    end
+    
+endmodule
 
 
     
-
